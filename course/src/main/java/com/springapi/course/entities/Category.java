@@ -1,5 +1,6 @@
 package com.springapi.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.persistence.GenerationType;
 
@@ -19,7 +20,8 @@ public class Category implements Serializable {
     private Long Id;
     private String name;
 
-    @Transient
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories")
     private Set<Product> products = new HashSet<>();
 
     public Set<Product> getProducts() {
